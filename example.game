@@ -1,0 +1,16 @@
+begin
+    E
+    W
+    look Chest
+    open Chest
+    take Key
+    E
+    take Key_2
+    W
+    open Chest
+    take Key
+    drop Key_2
+    look around
+    E
+    E
+end

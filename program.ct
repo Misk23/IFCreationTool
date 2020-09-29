@@ -1,0 +1,33 @@
+[Key] {
+    description "This key is used to open the door to Room3"
+}
+
+[Key_2]{
+    description "This key is used to open chest in Room2"
+}
+
+[Chest] {
+    description "A small wooden chest"
+    contains Key
+    require Key_2
+}
+
+(Room_1) {
+    description "You find yourself in the first room"
+    E Room_3
+    W Room_2
+    contains Key_2
+}
+
+(Room_2) {
+    description "You are now in a small room with no windows."
+    contains Chest
+}
+
+(Room_3) {
+    description "Final room"
+    require Key
+}
+
+start Room_1
+finish Room_3

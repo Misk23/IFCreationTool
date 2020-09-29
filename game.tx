@@ -1,0 +1,50 @@
+Game:
+    'begin'
+        commands *= Command
+    'end'
+;
+
+Command:
+    OpenCommand | MoveCommand | GoCommand | LookCommand | TakeCommand | DropCommand
+;
+
+OpenCommand:
+    'open' object = CTID
+;
+
+MoveCommand:
+    direction = Direction
+;
+
+GoCommand:
+    'go' section = CTID
+;
+
+LookCommand:
+    'look' object = CTID
+;
+
+TakeCommand:
+    'take' object = CTID
+;
+
+DropCommand:
+    'drop' object = CTID
+;
+
+Direction:
+    'N' | 'S' | 'E' | 'W' | 'NE' | 'NW' | 'SE' | 'SW'
+;
+
+Keyword:
+    'begin' | 'end' | 'start' | 'finish' | 'name' | 'description' | 'object' | 'link' |
+    'require' | 'open' | 'go' | 'look' | 'take' | 'drop'
+;
+
+CTID:
+    !Keyword ID
+;
+
+Comment:
+    /\/\*(.|\n)*?\*\//
+;

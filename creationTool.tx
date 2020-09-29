@@ -1,0 +1,75 @@
+CreationTool:
+    objects *= Object
+    sections += Section
+    (player = Player)?
+    'start' start = [Section]
+    'finish' finish = [Section]
+;
+
+Section:
+    '(' name = CTID ')' '{'
+       properties *= SectionProperty
+    '}'
+;
+
+Object:
+    '[' name = CTID ']' '{'
+        properties *= CommonProperty
+    '}'
+;
+
+Player:
+    'Player' '{'
+        properties *= PlayerProperty
+
+    '}'
+;
+
+CommonProperty:
+    DescriptionProperty | ContainsProperty | RequirementsProperty
+;
+
+SectionProperty:
+    CommonProperty | LinkProperty
+;
+
+PlayerProperty:
+    InventoryProperty
+;
+
+DescriptionProperty:
+    'description' description = STRING
+;
+
+ContainsProperty:
+    'contains' contains *= [Object][',']
+;
+
+RequirementsProperty:
+    'require' requirements *= [Object][',']
+;
+
+LinkProperty:
+    direction = Direction link = [Section]
+;
+
+InventoryProperty:
+    'inventory' inventory *= [Object][',']
+;
+
+Direction:
+    'N' | 'S' | 'E' | 'W' | 'NE' | 'NW' | 'SE' | 'SW'
+;
+
+Keyword:
+    'begin' | 'end' | 'start' | 'finish' | 'name' | 'description' | 'object' | 'link' |
+    'require' | 'open' | 'go' | 'look' | 'take' | 'drop'
+;
+
+CTID:
+    !Keyword ID
+;
+
+Comment:
+    /\/\*(.|\n)*?\*\//
+;
